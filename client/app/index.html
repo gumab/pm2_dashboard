@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html lang="ko">
+<head>
+  <meta http-equiv="content-language" content="ko">
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
+  <title>Toy Project - Bowling</title>
+
+  <link href="../content/bootstrap.min.css" rel="stylesheet">
+  <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    hello
+    <button class="btn btn-primary" onclick="test()">test</button>
+    <button class="btn btn-primary" onclick="test2()">test2</button>
+
+  </div>
+</body>
+<script type="text/javascript">
+function test2(){
+  $.ajax({
+           type:"POST",
+           url:"/test2",
+           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+           success : function(data) {
+                 // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
+                 // TODO
+                 console.log(data);
+           },
+           complete : function(data) {
+                 // 통신이 실패했어도 완료가 되었을 때 이 함수를 타게 된다.
+                 // TODO
+           },
+           error : function(xhr, status, error) {
+                 alert("에러발생");
+           }
+     });
+}
+
+function test() {
+     $.ajax({
+           type:"POST",
+           url:"/test",
+           dataType:"JSON", // 옵션이므로 JSON으로 받을게 아니면 안써도 됨
+           success : function(data) {
+                 // 통신이 성공적으로 이루어졌을 때 이 함수를 타게 된다.
+                 // TODO
+                 console.log(data);
+           },
+           complete : function(data) {
+                 // 통신이 실패했어도 완료가 되었을 때 이 함수를 타게 된다.
+                 // TODO
+           },
+           error : function(xhr, status, error) {
+                 alert("에러발생");
+           }
+     });
+}
+
+</script>
+</html>

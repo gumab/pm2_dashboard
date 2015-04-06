@@ -1,6 +1,9 @@
+'use strict';
+
 var http = require("http");
 var https = require("https");
 var exec = require('node-ssh-exec');
+var config = require('./config')
 
 /**
  * getJSON:  REST get request returning JSON object(s)
@@ -37,7 +40,7 @@ var getJSON = function(options, onResult)
 
 
 var options = {
-    host: 'gumabae.iptime.org',
+    host: '192.168.0.18',
     port: 9615,
     path: '/',
     method: 'GET',
@@ -47,19 +50,19 @@ var options = {
 };
 
 var sshOptions={
-	host:'gumabae.iptime.org',
-	username:'gumaserver',
-	password:'ASDFqornak!@#'
+	host:'192.168.0.18',
+	username:'guma',
+	password:'qockddnjs'
 
 }
 //exec('ls -lh',sshOptions).pipe(process.stdout)
-
+/*
 exec(sshOptions,'lshw -json',function(err,data){
 	var obj = JSON.parse(data);
 	console.log(obj.id);
 })
+*/
 
-/*
 exec(sshOptions,'pm2 web -n PM2_WEB',function(err,data){
 	console.log('----------------------------------------------')
 	console.log(data);
@@ -78,4 +81,4 @@ exec(sshOptions,'pm2 web -n PM2_WEB',function(err,data){
 		}
 	})
 })
-*/
+
