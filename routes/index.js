@@ -1,42 +1,42 @@
 'use strict';
 
 var config = require('../config/config'),
-    router = require('express').Router(),
-    serverBiz = require('../biz/serverBiz');
+	router = require('express').Router(),
+	serverBiz = require('../biz/serverBiz');
 
-module.exports = function (app) {
+module.exports = function(app) {
 
-  function sendDataCallback(res, next) {
-    return function (err, data) {
-      if (!err) {
-        res.status(200).send(data);
-      } else {
-        next(err);
-      }
-    }
-  }
+	function sendDataCallback(res, next) {
+		return function(err, data) {
+			if (!err) {
+				res.status(200).send(data);
+			} else {
+				next(err);
+			}
+		}
+	}
 
-  // render page
-  router.get('/', function (req, res, next) {
-    // TODO: userId is always 1
-        res.render('app/index.html', {
-          //data: { gameId: 4 }
-        });
-  });
+	// render page
+	router.get('/', function(req, res, next) {
+		// TODO: userId is always 1
+		res.render('app/index.html', {
+			//data: { gameId: 4 }
+		});
+	});
 
-  router.post('/test',function(req,res,next){
-    console.log('router');
-    var callback=sendDataCallback(res,next);
-    //console.log('success');
-    serverBiz.test(callback);
-  });
+	router.post('/test', function(req, res, next) {
+		console.log('router');
+		var callback = sendDataCallback(res, next);
+		//console.log('success');
+		serverBiz.getPM2Info(req.body.host,req.body.username,callback);
+	});
 
-  router.post('/test2',function(req,res,next){
-    var callback=sendDataCallback(res,next);
-    serverBiz.getServerList(callback);
-  })
+	router.post('/test2', function(req, res, next) {
+		var callback = sendDataCallback(res, next);
+		serverBiz.getServerList(callback);
+	})
 
-/*
+	/*
   router.post('/signIn',function(req,res,next){
 
     var userId = req.body.userId;
@@ -151,6 +151,6 @@ module.exports = function (app) {
 
 
 */
-  // use router
-  app.use(router);
+	// use router
+	app.use(router);
 };

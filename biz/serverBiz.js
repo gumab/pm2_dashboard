@@ -5,7 +5,7 @@ var http = require('http'),
     exec = require('node-ssh-exec'),
     config = require('../config/config'),
     serverDac = require('../dac/serverDac'),
-    prvKey=require('fs').readFileSync('/Users/guma/.ssh/id_rsa');
+    prvKey=require('fs').readFileSync(config.prvKeyPath);
 
 var pm2ConnectionOption = {
     host: '',
@@ -77,7 +77,7 @@ module.exports = {
       }
       else{
         if(!stderr){
-          outtime = 500;
+          outtime = 3000;
         }
         setTimeout(function(){
           var options = pm2ConnectionOption;
@@ -110,13 +110,13 @@ module.exports = {
       console.log(data[0]);
       var servers = [];
       for(var i=0;i<data.length;i++){
-        var obj = JSON.parse(data[i])
+        var obj = JSON.parse(data[i]);
         console.log(obj);
         servers.push(obj);
       }
 
       callback(err,JSON.stringify(servers));
-    })
+    });
   }
 };
 
