@@ -22,7 +22,7 @@ var path = require('path'),
 				username: 'guma'
 			}
 		],
-		prvKeyPath: '/home/cabox/.ssh/id_rsa',
+		prvKeyPath: process.env['HOME']+'/.ssh/id_rsa',
 		// database: {
 		//   server: '',
 		//   database: '',
